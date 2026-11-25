@@ -1,0 +1,5 @@
+.status-select{border:0;cursor:pointer;appearance:auto;min-width:88px;padding:6px 9px;background:#fff4df;color:#bd8429}
+.status-select.paid{background:#e6f6ed;color:#21895c}
+.status-select:disabled{opacity:.65;cursor:wait}
+.heading-actions{align-items:center}
+@media(max-width:650px){.heading-actions{flex-direction:row;flex-wrap:wrap}.page-heading .heading-actions .primary,.page-heading .heading-actions .secondary{white-space:nowrap}}
