@@ -99,3 +99,11 @@ The app does not process payments. A signed-in user can manually label each invo
 ## Backend tests and known setup requirements
 
 Run `cd backend && npm test` for service-level tests of bill calculation, paid-bill protections, patient search filters, and duplicate-email handling. These tests use isolated Prisma mocks and do not require MySQL. Install dependencies and configure MySQL before applying migrations or starting the API. The app has no local mock-data fallback. No screenshots are included yet; capture them after configuring and running the application.
+
+## Deployment
+
+The frontend is published to GitHub Pages by `.github/workflows/deploy-pages.yml`. In the repository, open **Settings → Pages** and set the publishing source to **GitHub Actions**. The workflow builds the `frontend` directory and publishes `frontend/dist`.
+
+GitHub Pages only hosts the static frontend. Host the NestJS API and MySQL database separately. For Railway, create a MySQL service and a service from this repository with the root directory set to `/backend`, build command `npm run build`, and start command `npm run start:prod`. The start command applies Prisma migrations before starting the API. Set `DATABASE_URL` to the Railway MySQL `MYSQL_URL`, plus `JWT_SECRET`, `FRONTEND_URL` (the Pages origin), `ADMIN_EMAIL`, `ADMIN_PASSWORD`, `STAFF_EMAIL`, and `STAFF_PASSWORD`. Use new strong production credentials. The API health endpoint is `/health`.
+
+Run `npm run prisma:seed` once for the Railway backend after setting its account variables. Then add the public API base URL as the GitHub repository variable `VITE_API_URL` under **Settings → Secrets and variables → Actions → Variables**, and rerun the Pages workflow so the frontend can connect to the API.
