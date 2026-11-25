@@ -1,2 +1,2 @@
-import React from 'react'; import {createRoot} from 'react-dom/client'; import {Provider} from 'react-redux'; import {BrowserRouter} from 'react-router-dom'; import {Toaster} from 'react-hot-toast'; import {store} from './store'; import App from './ui'; import './style.css';
-createRoot(document.getElementById('root')!).render(<React.StrictMode><Provider store={store}><BrowserRouter><App/><Toaster position="top-right"/></BrowserRouter></Provider></React.StrictMode>);
+import React from 'react'; import {createRoot} from 'react-dom/client'; import {Provider} from 'react-redux'; import {HashRouter} from 'react-router-dom'; import {Toaster} from 'react-hot-toast'; import {store} from './store'; import App from './ui'; import './style.css';
+createRoot(document.getElementById('root')!).render(<React.StrictMode><Provider store={store}><HashRouter><App/><Toaster position="top-right"/></HashRouter></Provider></React.StrictMode>);
